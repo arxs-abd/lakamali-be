@@ -217,7 +217,7 @@ const accPublicBlog = async (req, res) => {
 
     return res.send({
         status : 'success',
-        message : 'Blog Has Been Accepted'
+        message : 'Blog Has Been ' + review
     })
 }
 
