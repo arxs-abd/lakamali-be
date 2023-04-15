@@ -346,7 +346,7 @@ POST /api/blog/public
     content : 'Caranya adalah dengan memakan semua makana dengan cara saja',
     thumbnail : 'https://lokasigambar.com',
     category : 'blog',
-    user : 'arxs-akh
+    user : 'arxs-akh'
 }
 // Response
 200 OK
@@ -381,6 +381,8 @@ GET /api/blog/public
             title : 'Cara Membuat Makanan',
             slug : 'cara-membuat-makanan',
             content : 'Caranya adalah dengan memakan semua makana dengan cara saja',
+            category : 'blog',
+            hasAccept : false,
             createdAt : '2023-02-14T12:52:16.127Z',
             updatedAt : '2023-02-14T12:52:16.127Z',
             __v : 0
