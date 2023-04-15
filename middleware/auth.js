@@ -52,9 +52,9 @@ const authenticate = (req, res, next) => {
 const isAdmin = (req, res, next) => {
     const admin = process.env.ADMIN.split(' ')
     const id = req.user.id
-    if (!admin.includes(id)) return res.status(403).send({
+    if (!admin.includes(id)) return res.status(401).send({
         status : 'error',
-        msg : 'You Cant Acces'
+        msg : 'You Cant Acces, Just Admin Cant Acces This'
     })
     next()
 }

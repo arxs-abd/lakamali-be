@@ -10,17 +10,6 @@ const viewAll = async (req, res) => {
             data : err
         })    
     })
-    const allPublicBlog = await BlogPublic.find({
-        hasAccept : true
-    }).catch(err => {
-        return res.send({
-            status : 'error',
-            msg : 'Failed Get Blog',
-            data : err
-        })    
-    })
-
-    const data = [...allBlog, ...allPublicBlog]
 
     return res.send({
         status : 'success',
@@ -206,7 +195,18 @@ const accPublicBlog = async (req, res) => {
         })
     })
 
-    if (review === 'accept') publicBlog.hasAccept = true
+    if (review === 'accept') {
+        publicBlog.hasAccept = true
+        const {title, slug, content, user, category} = publicBlog
+        const data = {title, slug, content, user, category}
+        const newBlog = new Blog(data)
+        await newBlog.save().catch(err => {
+            return res.send({
+                status : 'error',
+                msg : err
+            })
+        })
+    }
     else if (review === 'reject') publicBlog.hasAccept = false
     else return res.status(404).send({
         status : 'fail',
