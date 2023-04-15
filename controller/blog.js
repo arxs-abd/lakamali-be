@@ -21,8 +21,7 @@ const viewAll = async (req, res) => {
     })
 
     const data = [...allBlog, ...allPublicBlog]
-    
-    console.log(data.length)
+
     return res.send({
         status : 'success',
         msg : 'Successfully Get Blog',
@@ -221,6 +220,21 @@ const accPublicBlog = async (req, res) => {
     })
 }
 
+const viewPublicById = async (req, res) => {
+    const {id} = req.params
+    const blog = await BlogPublic.findById(id).catch(err => {
+        return res.status(400).send({
+            status : 'error',
+            msg : 'Failed Get Blog',
+            data : err
+        })    
+    })
+    return res.send({
+        status : 'success',
+        result : blog
+    })
+}
+
 module.exports = {
     viewAll,
     viewById,
@@ -231,5 +245,6 @@ module.exports = {
     viewByCategory,
     addBlogByPublic,
     getPublicBlogList,
-    accPublicBlog
+    accPublicBlog,
+    viewPublicById
 }
