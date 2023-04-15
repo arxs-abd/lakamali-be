@@ -1,6 +1,5 @@
 const { Blog } = require("../models/blog")
 const { BlogPublic } = require('../models/blog_public')
-const fs = require('fs')
 const xslug = require('slug')
 
 const viewAll = async (req, res) => {
