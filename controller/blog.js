@@ -152,8 +152,8 @@ const deleteBlog = async (req, res) => {
 const addBlogByPublic = async (req, res) => {
     const {title, content, thumbnail, category, user} = req.body
     const slug = xslug(title.toLowerCase())
-    const hasAccept = false
-    const data = {slug, title, content, user, thumbnail, category, hasAccept}
+    const status = 'review'
+    const data = {slug, title, content, user, thumbnail, category, status}
 
     const newBlogPublic = new BlogPublic(data)
     await newBlogPublic.save().catch(err => {
@@ -195,10 +195,16 @@ const accPublicBlog = async (req, res) => {
         })
     })
 
+    if (!publicBlog) return res.status(404).send({
+        status : 'error',
+        msg : 'Blog not found'
+    })
+
     if (review === 'accept') {
-        publicBlog.hasAccept = true
-        const {title, slug, content, user, category} = publicBlog
-        const data = {title, slug, content, user, category}
+        // publicBlog.hasAccept = true
+        publicBlog.status = 'accept'
+        const {_id : id, title, slug, content, user, category} = publicBlog
+        const data = {id_public : id, title, slug, content, user, category}
         const newBlog = new Blog(data)
         await newBlog.save().catch(err => {
             return res.send({
@@ -207,7 +213,8 @@ const accPublicBlog = async (req, res) => {
             })
         })
     }
-    else if (review === 'reject') publicBlog.hasAccept = false
+    // else if (review === 'reject') publicBlog.hasAccept = false
+    else if (review === 'reject') publicBlog.status = 'reject'
     else return res.status(404).send({
         status : 'fail',
         message : 'Wrong Request'

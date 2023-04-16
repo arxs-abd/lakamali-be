@@ -28,6 +28,10 @@ const blogPublicSchema = new mongoose.Schema({
     },
     hasAccept : {
         type : Boolean
+    },
+    status : {
+        type : String,
+        required : true
     }
 }, {
     timestamps : true,
