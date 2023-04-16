@@ -5,6 +5,9 @@ const blogSchema = new mongoose.Schema({
     id_user : {
         type : String,
     },
+    id_public : {
+        type : String
+    },
     user : {
         type : String,
     },
