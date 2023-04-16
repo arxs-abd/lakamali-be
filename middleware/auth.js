@@ -55,7 +55,7 @@ const authenticate = (req, res, next) => {
 }
 
 const isAdmin = (req, res, next) => {
-    const admin = process.env.ADMIN.split(' ')
+    const admin = process.env.ADMIN.split('_')
     const id = req.user.id
     if (!admin.includes(id)) return res.status(401).send({
         status : 'error',
