@@ -391,7 +391,44 @@ GET /api/blog/public
 }
 ```
 
-#### 8. Review Blog Public
+#### 8. Get a Blog Public
+
+##### Endpoint
+
+```Javascript
+GET /api/blog/public/{public_blog_id}
+```
+
+##### Example Request
+
+```Javascript
+GET /api/blog/public/643b5c3edd7aae806de045d0
+```
+
+##### Example For Response
+
+```Javascript
+// Response
+200 OK
+{
+    status : 'success',
+    result : {
+        _id : '643b5c3edd7aae806de045d0',
+        user : 'arxs-akh',
+        title : 'Cara makan menggunakan nasi',
+        slug : 'cara-makan-menggunakan-nasi',
+        thumbnail : 'https://img.okezone.com/content/2022/12/21/298/2731803/resep-nasi-goreng-seafood-ala-chef-devina-hermawan-seenak-buatan-restoran-tEzXJbMueM.jpg',
+        content : 'Makan menggunakan nasi merupakan salah cara untuk minum',
+        category : 'blog',
+        status : 'accept',
+        createdAt : '2023-04-16T02:23:58.993Z',
+        updatedAt : '2023-04-16T02:24:08.152Z',
+        __v: 0
+    }
+}
+```
+
+#### 9. Review Blog Public
 
 ##### Endpoint
 
@@ -413,5 +450,36 @@ POST /api/blog/public/64397c82d3422c528eef4a09/review/accept
 {
     'status' : 'success',
     'message' : 'Blog Has Been accept'
+}
+```
+
+#### 10. Remove Blog
+
+##### Endpoint
+
+```Javascript
+DELETE /api/blog/public
+```
+
+##### Field
+
+| Field | Description                   | Type   | Validation |
+| ----- | ----------------------------- | ------ | ---------- |
+| id    | Id for public blog in website | String | Required   |
+
+##### Example For Response
+
+```Javascript
+// Request
+{
+    id : '63ebba602bc11162f2ab3d58'
+}
+// Response
+200 OK
+{
+    {
+    status : 'successfully',
+    msg : 'Blog Has Been Deleted'
+    }
 }
 ```

@@ -21,8 +21,8 @@ app.use(bodyParser.urlencoded({
 app.use(routerAuth)
 app.use(routerBlog)
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-module.exports = app
+module.exports = server

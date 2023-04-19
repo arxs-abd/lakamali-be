@@ -242,6 +242,26 @@ const viewPublicById = async (req, res) => {
     })
 }
 
+const deletePublicBlog = async (req, res) => {
+    const {id} = req.body
+    const blog = await BlogPublic.findOne({
+        _id : id
+    })
+
+    await blog.remove().catch(err => {
+        return res.send({
+            status : 'error',
+            msg : 'Public Blog Fail to Remove'
+        })
+    })
+
+    return res.send({
+        status : 'successfull',
+        msg : 'Public Blog Has Been Deleted'
+    })
+    
+}
+
 module.exports = {
     viewAll,
     viewById,
@@ -253,5 +273,6 @@ module.exports = {
     addBlogByPublic,
     getPublicBlogList,
     accPublicBlog,
-    viewPublicById
+    viewPublicById,
+    deletePublicBlog,
 }
